@@ -1,0 +1,28 @@
+aside{
+    flex: 0.2;
+    padding-top: 2vh;
+    background-color: var(--gray);
+}
+
+aside ul {
+  list-style-type: none;
+}
+
+aside ul li {
+    padding: 0.8vw 1.2vw;
+}
+
+aside ul li p{
+    opacity: 0.6;
+}
+
+aside ul li.active {
+    padding: 0.8vw 1.2vw;
+    background-color: var(--secondary);
+}
+
+aside ul li.active p{
+    opacity: 1;
+    color: var(--white);
+    font-weight: bold;
+}

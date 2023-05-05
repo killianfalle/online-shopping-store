@@ -1,0 +1,5 @@
+.body-container {
+    flex: 1;
+    background-color: var(--primary);
+    padding: 2.5vw;
+}

@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface SidebarProps {
-  links: { label: string; url: string }[];
-}
+import "../assets/sidebar.css"
 
 const Sidebar: React.FC<SidebarProps> = ({ links }) => {
   return (
@@ -10,8 +7,8 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => {
       <nav>
         <ul>
           {links.map((link, index) => (
-            <li key={index}>
-              <a href={link.url}>{link.label}</a>
+            <li key={index} className={index === 1 ? "active" : ""}>
+              <p>{link.label}</p>
             </li>
           ))}
         </ul>
@@ -19,5 +16,9 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => {
     </aside>
   );
 };
+
+interface SidebarProps {
+  links: { label: string; type: string }[];
+}
 
 export default Sidebar;

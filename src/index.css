@@ -1,5 +1,5 @@
 :root{
-  --background: #F6F5F0;
+  --background: #fff;
   --primary: #6ECCAF;
   --secondary: #344D67;
   --white: #F6F5F0;
@@ -25,6 +25,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -32,6 +36,11 @@ code {
 
 p {
   margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 input:focus-visible,
