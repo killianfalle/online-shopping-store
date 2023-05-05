@@ -1,14 +1,24 @@
-import React from 'react';
+import { FC, useContext } from "react";
 import "../assets/sidebar.css"
+import { Context } from "../context/context";
 
-const Sidebar: React.FC<SidebarProps> = ({ links }) => {
+const Sidebar: FC<SidebarProps> = ({ categories }) => {
+  const {category, setCategory} = useContext(Context);
+
+  const handleChangeCategory = (category: string) => {
+    setCategory(category)
+  }
+
   return (
     <aside>
       <nav>
         <ul>
-          {links.map((link, index) => (
-            <li key={index} className={index === 1 ? "active" : ""}>
-              <p>{link.label}</p>
+          {categories.map((item, index) => (
+            <li
+              key={index}
+              onClick={() => handleChangeCategory(item)}
+              className={item === category ? "active" : ""}>
+              <p>{item}</p>
             </li>
           ))}
         </ul>
@@ -18,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => {
 };
 
 interface SidebarProps {
-  links: { label: string; type: string }[];
+  categories: string[];
 }
 
 export default Sidebar;
