@@ -5,4 +5,5 @@ export interface Product {
     imageUrl: string;
     productName: string;
     unitPrice: GLfloat;
+    quantity: number;
 }

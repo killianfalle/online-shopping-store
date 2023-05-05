@@ -1,11 +1,13 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { Product } from '../types/product';
+import { Context } from '../context/context';
 import "../assets/product.css"
 
 const Products: FC<ProductsProps> = ({ products }) => {
+  const {addToCart} = useContext(Context)
 
-  const handleAddToCart = (item: object) => {
-    console.log(item)
+  const handleAddToCart = (item: Product) => {
+    addToCart(item)
   }
 
   return (

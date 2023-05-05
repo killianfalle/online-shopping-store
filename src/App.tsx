@@ -3,14 +3,12 @@ import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Products from "./components/products";
 import Cart from "./components/cart";
-import productsJson from "./data/items.json";
 import { Product } from "./types/product";
 import { Context } from "./context/context";
 import "./assets/app.css"
 
 const App: React.FC = () => {
-  const products: Product[] = productsJson;
-  const {category} = useContext(Context);
+  const {category, products} = useContext(Context);
   const [categories, setCategories] = useState<[]>([]);
   const [productsList, setProductsList] = useState<[]>([]);
 
@@ -46,8 +44,8 @@ const App: React.FC = () => {
     setProductsList(categoryProducts[category] as []);
   }
 
-  useEffect(() => getProducts(), [category])
-  useEffect(() => getCategories(), [])
+  useEffect(() => getProducts(), [category, products])
+  useEffect(() => getCategories(), [products])
 
   return (
     <div className="wrapper">
