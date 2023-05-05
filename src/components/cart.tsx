@@ -3,7 +3,7 @@ import { Context } from '../context/context';
 import "../assets/cart.css"
 
 const Cart: React.FC<CartProps> = () => {
-  const {cart} = useContext(Context)
+  const {cart, clearCart} = useContext(Context)
 
   const getTotalItems = () => {
     return cart.reduce((acc, product) => acc + product.quantity, 0);
@@ -17,7 +17,7 @@ const Cart: React.FC<CartProps> = () => {
     <div className="cart-container">
       <div className="cart-header">
         <p className="title">My Cart</p>
-        <button>Clear</button>
+        <button onClick={() => clearCart()}>Clear</button>
       </div>
 
       <div className="cart-list-container">

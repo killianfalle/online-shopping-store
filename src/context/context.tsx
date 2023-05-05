@@ -8,7 +8,8 @@ export const Context = createContext<ContextProps>({
     setCategory: () => {},
     products: [],
     cart: [],
-    addToCart: () => {}
+    addToCart: () => {},
+    clearCart: () => {},
 })
 
 const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
@@ -16,9 +17,10 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
     const [cart, setCart] = useState<Product[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
 
-    function addToCart(product: Product) {
+    const clearCart = () => setCart([]);
+    const addToCart = (product: Product)  => {
         const existingProductIndex = cart.findIndex((p) => p.id === product.id);
-          
+
         if (existingProductIndex !== -1) {
             // product with same id exists, update quantity
             const updatedProducts = cart.map((p) => {
@@ -53,6 +55,7 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
                 setCategory,
                 cart,
                 addToCart,
+                clearCart
             }}
         >
             {children}

@@ -11,4 +11,5 @@ export type ContextProps = {
     setCategory:(c: string) => void,
     cart: Product[],
     addToCart: (p: Product) => void
+    clearCart: () => void
 }
