@@ -1,6 +1,8 @@
 aside{
-    flex: 0.2;
-    background-color: var(--white);
+    flex: 0.25;
+    background-color: var(--background);
+    box-shadow: 0px 0px 12px -8px var(--black);
+    z-index: 1;
 }
 
 aside ul {

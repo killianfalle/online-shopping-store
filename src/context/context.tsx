@@ -31,7 +31,7 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
               setCart(updatedProducts);
         }else{
             // product with new id, add to array
-            setCart((prevProducts) => [...prevProducts, product]);
+            setCart((prevProducts) => [product, ...prevProducts]);
         }
     }
 
