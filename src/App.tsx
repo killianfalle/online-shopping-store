@@ -8,7 +8,7 @@ import { Context } from "./context/context";
 import "./assets/app.css"
 
 const App: React.FC = () => {
-  const {category, products} = useContext(Context);
+  const {category, products, cart} = useContext(Context);
   const [categories, setCategories] = useState<[]>([]);
   const [productsList, setProductsList] = useState<[]>([]);
 
@@ -54,7 +54,7 @@ const App: React.FC = () => {
       <div className="body-container">
         <Sidebar categories={categories} />
         <Products products={productsList}/>
-        <Cart />
+        {cart.length > 0 && <Cart />}
       </div>
     </div>
   );

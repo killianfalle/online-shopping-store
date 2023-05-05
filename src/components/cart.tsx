@@ -17,7 +17,7 @@ const Cart: React.FC<CartProps> = () => {
     <div className="cart-container">
       <div className="cart-header">
         <p className="title">My Cart</p>
-        <button onClick={() => clearCart()}>Clear</button>
+        <button onClick={clearCart}>Clear</button>
       </div>
 
       <div className="cart-list-container">
