@@ -1,0 +1,10 @@
+header {
+    background-color: var(--dark-gray);
+    padding: 20px
+}
+
+header p {
+    font-size: var(--text-xl);
+    font-weight: bold;
+    color: var(--white);
+}
