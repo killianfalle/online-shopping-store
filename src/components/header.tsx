@@ -1,7 +1,6 @@
-import React from 'react';
 import "../assets/header.css"
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <header>
       <p>Online Shopping Store</p>

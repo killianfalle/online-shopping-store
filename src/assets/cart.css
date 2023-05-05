@@ -1,4 +1,13 @@
 .cart-container{
     flex: 0.35;
     background-color: var(--secondary);
+    margin-top: -7vh;
+    box-shadow: -5px 0px 5px -5px var(--black);
+}
+
+.cart-container .title{
+    padding: 15px;
+    font-size: var(--text-xl);
+    font-weight: bold;
+    color: var(--white);
 }

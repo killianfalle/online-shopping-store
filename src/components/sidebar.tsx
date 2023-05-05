@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
-import "../assets/sidebar.css"
 import { Context } from "../context/context";
+import "../assets/sidebar.css"
 
 const Sidebar: FC<SidebarProps> = ({ categories }) => {
   const {category, setCategory} = useContext(Context);

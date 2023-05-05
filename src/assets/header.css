@@ -1,6 +1,9 @@
 header {
-    background-color: var(--dark-gray);
-    padding: 20px
+    height: 7vh;
+    background-color: var(--secondary);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
 }
 
 header p {

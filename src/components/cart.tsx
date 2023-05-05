@@ -4,7 +4,7 @@ import "../assets/cart.css"
 const Cart: React.FC<CartProps> = () => {
   return (
     <div className="cart-container">
-      <p>Cart here</p>
+      <p className="title">Cart here</p>
     </div>
   );
 };

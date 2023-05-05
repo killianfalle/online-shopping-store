@@ -11,9 +11,13 @@
   --text-xxl: 2vw;
   --text-xl: 1.5vw;
   --text-lg: 1vw;
+  --text-normal: 0.95vw;
   --text-md: 0.8vw;
   --text-sm: 0.5vw;
   --text-xs: 0.3vw;
+
+  --border-radius: 5px;
+  --image-radius: 999px;
 }
 
 body {
@@ -23,6 +27,17 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.7;
 }
 
 h1, h2, h3, h4 {

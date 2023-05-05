@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
-import Body from "./components/body";
+import Products from "./components/products";
 import Cart from "./components/cart";
 import productsJson from "./data/items.json";
-import { Context } from "./context/context";
 import { Product } from "./types/product";
+import { Context } from "./context/context";
 import "./assets/app.css"
 
 const App: React.FC = () => {
   const products: Product[] = productsJson;
   const {category} = useContext(Context);
   const [categories, setCategories] = useState<[]>([]);
+  const [productsList, setProductsList] = useState<[]>([]);
 
   const arrangeProductsByCategory = () => {
     const categoryProducts: {[key: string]: Product[] } = products.reduce<{[key: string]: Product[] }>(
@@ -32,27 +33,29 @@ const App: React.FC = () => {
   }
 
   // Arrange categories from each products
+  // then store categories in an array (Alphabetical order)
   const getCategories = () => {
     const categoryProducts = arrangeProductsByCategory();
 
-    // Store categories in an array (Alphabetical order)
     const categoriesArray = Object.keys(categoryProducts).sort();
-    setCategories(categoriesArray as [])
+    setCategories(categoriesArray as []);
   }
 
-  useEffect(() => {
-    getCategories();
-  }, [])
+  const getProducts = () => {
+    const categoryProducts = arrangeProductsByCategory();
+    setProductsList(categoryProducts[category] as []);
+  }
+
+  useEffect(() => getProducts(), [category])
+  useEffect(() => getCategories(), [])
 
   return (
     <div className="wrapper">
       <Header />
       
-      <div className="app-container">
+      <div className="body-container">
         <Sidebar categories={categories} />
-        <Body>
-          <h1>{category}</h1>
-        </Body>
+        <Products products={productsList}/>
         <Cart />
       </div>
     </div>
