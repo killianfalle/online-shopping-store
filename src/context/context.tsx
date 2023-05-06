@@ -49,11 +49,11 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
     };
 
     const onRemoveItem = (index: number) => {
-        setCart(items => {
-            const newItems = [...items];
-            newItems.splice(index, 1);
-            return newItems;
-        });
+        const newItems = [...cart];
+        newItems.splice(index, 1);
+
+        setCart(newItems);
+        localStorage.setItem("cartItems", JSON.stringify(newItems));
     }
 
     const onChangeQuantity = (type: string, item: Product) => {
@@ -71,6 +71,7 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
         });
 
         setCart(updatedQuantity);
+        localStorage.setItem("cartItems", JSON.stringify(updatedQuantity));
     }
 
     const addToCart = (product: Product)  => {
@@ -86,13 +87,24 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
               });
 
               setCart(updatedProducts);
+              localStorage.setItem("cartItems", JSON.stringify(updatedProducts));
         }else{
             // product with new id, add to array
             setCart((prevProducts) => [product, ...prevProducts]);
+            localStorage.setItem("cartItems", JSON.stringify([product, ...cart]));
         }
     }
 
+    const setCartFromStorage = () => {
+        const storedCartItems = localStorage.getItem("cartItems");
+
+        if (storedCartItems)
+            setCart(JSON.parse(storedCartItems));
+    }
+
     useEffect(() => {
+        setCartFromStorage();
+
         // add quantity property to each product from JSON file
         const updatedProducts = productsJson.map((product) => ({
             ...product,
