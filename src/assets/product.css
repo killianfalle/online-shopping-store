@@ -16,6 +16,14 @@
     flex-direction: row;
 }
 
+.search-input {
+    width: 97.8%;
+    border: none;
+    background-color: var(--light-gray);
+    padding: 1.5vh;
+    border-radius: var(--border-radius);
+}
+
 .product-image {
     display: flex;
     justify-content: center;
