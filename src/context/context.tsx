@@ -2,22 +2,50 @@ import { createContext, useEffect, useState } from "react"
 import { Product } from "../types/product";
 import { ContextProps, ContextProviderProps } from "./types";
 import productsJson from "../data/items.json";
+import { Modal } from "../types/modal";
 
 export const Context = createContext<ContextProps>({
     category: "all",
-    setCategory: () => {},
     products: [],
     cart: [],
+    showModal: {
+        value: false,
+        title: "",
+        description: "",
+        data: []
+    },
+    setCategory: () => {},
     addToCart: () => {},
     clearCart: () => {},
+    checkout: () => {},
+    setShowModal: () => {},
 })
 
 const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
     const [category, setCategory] = useState<string>("all");
     const [cart, setCart] = useState<Product[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
+    const [showModal, setShowModal] = useState<Modal>({
+        value: false,
+        title: "",
+        description: "",
+        data: []
+    });
 
     const clearCart = () => setCart([]);
+
+    const checkout = () => {
+        setShowModal({
+            ...showModal,
+            value: true,
+            title: "Thank you for purchasing!",
+            description: "This is the overview of the products you purchased:",
+            data: cart as []
+        })
+
+        clearCart();
+    };
+
     const addToCart = (product: Product)  => {
         const existingProductIndex = cart.findIndex((p) => p.id === product.id);
 
@@ -51,11 +79,14 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
         <Context.Provider
             value={{
                 products,
-                category,
-                setCategory,
                 cart,
+                category,
+                showModal,
+                setCategory,
                 addToCart,
-                clearCart
+                clearCart,
+                checkout,
+                setShowModal
             }}
         >
             {children}

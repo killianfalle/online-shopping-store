@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../context/context';
 import "../assets/cart.css"
 
-const Cart: React.FC<CartProps> = () => {
-  const {cart, clearCart} = useContext(Context)
+const Cart = () => {
+  const {cart, clearCart, checkout} = useContext(Context)
 
   const getTotalItems = () => {
     return cart.reduce((acc, product) => acc + product.quantity, 0);
@@ -51,12 +51,10 @@ const Cart: React.FC<CartProps> = () => {
           <p className="total-items-label">Total Amount: </p>
           <p className="total-value">₱{getTotalAmount().toLocaleString()}</p>
         </div>
-        <button>Proceed To Checkout</button>
+        <button onClick={checkout}>Proceed To Checkout</button>
       </div>
     </div>
   );
 };
-
-interface CartProps {}
 
 export default Cart;

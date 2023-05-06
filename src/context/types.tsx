@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Modal } from "../types/modal";
 import { Product } from "../types/product";
 
 export type ContextProviderProps = {
@@ -8,8 +9,11 @@ export type ContextProviderProps = {
 export type ContextProps = {
     products: Product[];
     category: string
-    setCategory:(c: string) => void,
+    showModal: Modal,
     cart: Product[],
-    addToCart: (p: Product) => void
-    clearCart: () => void
+    setCategory:(c: string) => void,
+    addToCart: (p: Product) => void,
+    clearCart: () => void,
+    checkout: () => void,
+    setShowModal: (m: Modal) => void
 }

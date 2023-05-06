@@ -3,6 +3,7 @@ import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Products from "./components/products";
 import Cart from "./components/cart";
+import Modal from "./components/modal";
 import { Product } from "./types/product";
 import { Context } from "./context/context";
 import "./assets/app.css"
@@ -49,6 +50,7 @@ const App: React.FC = () => {
 
   return (
     <div className="wrapper">
+      <Modal />
       <Header />
       
       <div className="body-container">
