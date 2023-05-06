@@ -19,7 +19,8 @@ export const Context = createContext<ContextProps>({
     clearCart: () => {},
     checkout: () => {},
     setShowModal: () => {},
-    onChangeQuantity: () => {}
+    onChangeQuantity: () => {},
+    onRemoveItem: () => {}
 })
 
 const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
@@ -46,6 +47,14 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
 
         clearCart();
     };
+
+    const onRemoveItem = (index: number) => {
+        setCart(items => {
+            const newItems = [...items];
+            newItems.splice(index, 1);
+            return newItems;
+        });
+    }
 
     const onChangeQuantity = (type: string, item: Product) => {
         const productIndex = cart.findIndex(product => product.id === item.id);
@@ -105,7 +114,8 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
                 clearCart,
                 checkout,
                 setShowModal,
-                onChangeQuantity
+                onChangeQuantity,
+                onRemoveItem
             }}
         >
             {children}

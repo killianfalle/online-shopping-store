@@ -3,7 +3,13 @@ import { Context } from '../context/context';
 import "../assets/cart.css"
 
 const Cart = () => {
-  const {cart, clearCart, checkout, onChangeQuantity} = useContext(Context)
+  const {
+    cart,
+    clearCart,
+    checkout,
+    onChangeQuantity,
+    onRemoveItem
+  } = useContext(Context)
 
   const getTotalItems = () => {
     return cart.reduce((acc, product) => acc + product.quantity, 0);
@@ -25,6 +31,10 @@ const Cart = () => {
           <div
             key={index}
             className="cart-item-container">
+            <button className="remove-button" onClick={() => onRemoveItem(index)}>
+              <p>x</p>
+            </button>
+
             <div className="cart-product-image">
               <img src={item.imageUrl} alt={item.productName} />
             </div>
