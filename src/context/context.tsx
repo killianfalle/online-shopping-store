@@ -34,7 +34,10 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
         data: []
     });
 
-    const clearCart = () => setCart([]);
+    const clearCart = () => {
+        setCart([])
+        localStorage.setItem("cartItems", JSON.stringify([]));
+    };
 
     const checkout = () => {
         setShowModal({
@@ -97,9 +100,9 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
 
     const setCartFromStorage = () => {
         const storedCartItems = localStorage.getItem("cartItems");
-
-        if (storedCartItems)
-            setCart(JSON.parse(storedCartItems));
+        if (!storedCartItems) return;
+    
+        setCart(JSON.parse(storedCartItems));
     }
 
     useEffect(() => {
