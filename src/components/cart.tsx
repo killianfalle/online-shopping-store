@@ -31,7 +31,7 @@ const Cart = () => {
 
             <div className="cart-product-labels">
               <p className="cart-product-title">{item.productName}</p>
-              <p className="cart-product-price">₱{item.unitPrice.toLocaleString()}</p>
+              <p className="cart-product-price">₱{(item.unitPrice * item.quantity).toLocaleString()}</p>
             </div>
             
             <div className="cart-product-price-container">
