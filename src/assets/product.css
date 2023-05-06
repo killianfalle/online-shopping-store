@@ -88,13 +88,14 @@
 .product-price {
     font-size: var(--text-xl);
     font-weight: bold;
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 .product-price-container button{
-  background-color: var(--secondary);
-  color: var(--white);
-  font-size: var(--text-normal);
+  background-color: var(--primary);
+  color: var(--black);
+  font-weight: bold;
+  font-size: var(--text-md);
   padding: 10px 15px;
   border-radius: var(--border-radius);
 }

@@ -29,6 +29,6 @@ aside ul li.active {
 
 aside ul li.active p{
     opacity: 1;
-    color: var(--white);
+    color: var(--black);
     font-weight: bold;
 }

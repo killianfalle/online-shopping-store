@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ContextProvider from './context/context';
+import ContextProvider from './context/context-provider';
 import './index.css';
 
 const root = ReactDOM.createRoot(

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { Context } from '../context/context';
 import { Product } from '../types/product';
+import { Context } from '../context/context';
 import "../assets/modal.css"
 
 const Modal = () => {
