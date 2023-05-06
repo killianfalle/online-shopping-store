@@ -39,6 +39,23 @@
     margin-right: 1.5vw;
 }
 
+.sort-container {
+    margin: 1vh 0;
+    
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sort-container button {
+    font-size: var(--text-lg);
+}
+
+.sort-container button span {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
 .product-labels {
     flex: 1;
 }

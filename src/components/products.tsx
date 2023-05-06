@@ -3,19 +3,30 @@ import { Product } from '../types/product';
 import { Context } from '../context/context';
 import "../assets/product.css"
 
-const Products: FC<ProductsProps> = ({ products }) => {
+const Products: FC<ProductsProps> = ({ products, setProductsList }) => {
+  const {addToCart, category} = useContext(Context)
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const {addToCart} = useContext(Context)
+  const [sortOrder, setSortOrder] = useState<'default' | 'asc' | 'desc'>('default');
   const productsToShow = searchTerm ? filteredProducts : products;
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleAddToCart = (item: Product) => {
-    addToCart(item)
-  }
+  const handleSort = (changeSort: boolean = true) => {
+    const isAscending = ['default', 'asc'].includes(sortOrder);
+    const newSortOrder = isAscending ? 'desc' : 'asc';
+
+    if(changeSort)
+      setSortOrder(newSortOrder);
+  
+    const sortedProducts = productsToShow.slice().sort((a, b) =>
+      isAscending ? a.unitPrice - b.unitPrice : b.unitPrice - a.unitPrice
+    );
+
+    searchTerm ? setFilteredProducts(sortedProducts) : setProductsList(sortedProducts as []);
+  };
 
   useEffect(() => {
     const filtered = products.filter(product =>
@@ -26,6 +37,8 @@ const Products: FC<ProductsProps> = ({ products }) => {
     setFilteredProducts(filtered);
   }, [searchTerm])
 
+  useEffect(() => setSortOrder('default'), [category])
+
   return (
     <div className="products-container">
       <input
@@ -35,6 +48,12 @@ const Products: FC<ProductsProps> = ({ products }) => {
         value={searchTerm}
         onChange={handleSearch}
       />
+
+      <div className="sort-container">
+        <button onClick={() => handleSort(true)}>
+          Sort price <span>{sortOrder === "default" ? "default" : sortOrder === 'asc' ? 'high to low' : 'low to high'}</span>
+        </button>
+      </div>
 
       {productsToShow.map((item, index) => (
         <div
@@ -52,7 +71,7 @@ const Products: FC<ProductsProps> = ({ products }) => {
           
           <div className="product-price-container">
             <p className="product-price">₱{item.unitPrice.toLocaleString()}</p>
-            <button onClick={() => handleAddToCart(item)}>Add to cart</button>
+            <button onClick={() => addToCart(item)}>Add to cart</button>
           </div>
         </div>
       ))}
@@ -62,6 +81,7 @@ const Products: FC<ProductsProps> = ({ products }) => {
 
 interface ProductsProps {
   products: Product[] | [];
+  setProductsList: (p: []) => void;
 }
 
 export default Products;

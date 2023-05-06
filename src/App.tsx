@@ -55,7 +55,10 @@ const App: React.FC = () => {
       
       <div className="body-container">
         <Sidebar categories={categories} />
-        <Products products={productsList}/>
+        <Products
+          products={productsList}
+          setProductsList={setProductsList}
+        />
         {cart.length > 0 && <Cart />}
       </div>
     </div>
