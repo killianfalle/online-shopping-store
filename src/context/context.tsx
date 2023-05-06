@@ -19,6 +19,7 @@ export const Context = createContext<ContextProps>({
     clearCart: () => {},
     checkout: () => {},
     setShowModal: () => {},
+    onChangeQuantity: () => {}
 })
 
 const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
@@ -45,6 +46,23 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
 
         clearCart();
     };
+
+    const onChangeQuantity = (type: string, item: Product) => {
+        const productIndex = cart.findIndex(product => product.id === item.id);
+        if(productIndex < 0) return;
+
+        const updatedQuantity = cart.map((p) => {
+            if (p.id === item.id)
+                return {
+                    ...p,
+                    quantity: type === "increment" ? p.quantity + 1 : p.quantity - 1
+                };
+
+            return p;
+        });
+
+        setCart(updatedQuantity);
+    }
 
     const addToCart = (product: Product)  => {
         const existingProductIndex = cart.findIndex((p) => p.id === product.id);
@@ -86,7 +104,8 @@ const ContextProvider: React.FC<ContextProviderProps> = ({children}) => {
                 addToCart,
                 clearCart,
                 checkout,
-                setShowModal
+                setShowModal,
+                onChangeQuantity
             }}
         >
             {children}

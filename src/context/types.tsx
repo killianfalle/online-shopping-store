@@ -15,5 +15,6 @@ export type ContextProps = {
     addToCart: (p: Product) => void,
     clearCart: () => void,
     checkout: () => void,
-    setShowModal: (m: Modal) => void
+    setShowModal: (m: Modal) => void,
+    onChangeQuantity: (type: string, item: Product) => void
 }

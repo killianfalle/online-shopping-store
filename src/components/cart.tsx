@@ -3,7 +3,7 @@ import { Context } from '../context/context';
 import "../assets/cart.css"
 
 const Cart = () => {
-  const {cart, clearCart, checkout} = useContext(Context)
+  const {cart, clearCart, checkout, onChangeQuantity} = useContext(Context)
 
   const getTotalItems = () => {
     return cart.reduce((acc, product) => acc + product.quantity, 0);
@@ -35,7 +35,9 @@ const Cart = () => {
             </div>
             
             <div className="cart-product-price-container">
-              <button>button</button>
+              <button disabled={item.quantity === 1} onClick={() => onChangeQuantity("decrement", item)}>-</button>
+              <p>{item.quantity}</p>
+              <button onClick={() => onChangeQuantity("increment", item)}>+</button>
             </div>
           </div>
         ))}
