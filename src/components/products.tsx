@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react';
 import { Product } from '../types/product';
 import { Context } from '../context/context';
 import "../assets/product.css"
@@ -10,7 +10,7 @@ const Products: FC<ProductsProps> = ({ products, setProductsList }) => {
   const [sortOrder, setSortOrder] = useState<'default' | 'asc' | 'desc'>('default');
   const productsToShow = searchTerm ? filteredProducts : products;
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
@@ -37,7 +37,10 @@ const Products: FC<ProductsProps> = ({ products, setProductsList }) => {
     setFilteredProducts(filtered);
   }, [searchTerm])
 
-  useEffect(() => setSortOrder('default'), [category])
+  useEffect(() => {
+    setSortOrder('default');
+    setSearchTerm("");
+  }, [category])
 
   return (
     <div className="products-container">
